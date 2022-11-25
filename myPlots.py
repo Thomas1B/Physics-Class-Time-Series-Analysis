@@ -58,3 +58,8 @@ def plot_heatmap(data,
     plt.xlabel("Longtitude [$^{\circ}$ $W$]", fontsize=fontsize, labelpad=10)
     plt.ylabel('Latitude [$^{\circ}$ $N$]', fontsize=fontsize, labelpad=10)
     plt.legend(fontsize=fontsize)
+
+
+
+# List of functions. 
+function_list = [plot_heatmap]

@@ -87,7 +87,6 @@ def GetNS_NFFT(data, showInfo=False):
 
     return NS, NFFT
 
-
 def PowerSpectrum(data, dt, rec_len):
     '''
     Function to calculate the power spectrum density (PSD) of a time series
@@ -112,3 +111,9 @@ def PowerSpectrum(data, dt, rec_len):
     PSD = np.abs(FT**2)/N
 
     return PSD, freqs
+
+
+
+
+# List of functions. 
+function_list = [applyGridInterp, GetNS_NFFT, PowerSpectrum]

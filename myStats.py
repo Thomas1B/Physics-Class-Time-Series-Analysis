@@ -79,3 +79,11 @@ def UniformRandom(a, b):
     Function to return a random number from a uniform distribution between (a, b)
     '''
     return sp_stats.uniform.rvs(loc=a, scale=b-a)
+
+
+
+
+
+
+# List of functions. 
+function_list = [StudentConfidenceInterval, CI_psd, UniformRandom]

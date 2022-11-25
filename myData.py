@@ -176,5 +176,5 @@ def removeStation(name):
     return data
 
 
-
+# List of functions. 
 function_list = [readCoastLine, readMinuteData, readHourData, getStationInfo, removeStation]

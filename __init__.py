@@ -1,5 +1,7 @@
 # import os
 
+from main_functions import *
+
 from .myDates import * # importing date handling functions
 
 from .myPlots import * # importing custom plot handling functions

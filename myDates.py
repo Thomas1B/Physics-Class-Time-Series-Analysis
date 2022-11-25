@@ -4,35 +4,11 @@ Module for convert dates from a string to a number or a number to a string.
 
 Similar to Matlab's datenum and datestr functions.
 
-DateStrtoNum(datestr, dtype):
-    Function to convert a date number to a date string.
-    Takes in a number representing the date.
-    Returns the date in a string.
+DateStrtoNum(datestr, dtype)
 
-    Default returns: 'day/month/year'
-    if giveTime = True, returns: 'day/month/year, hrs:mins'
+DateNumtoStr(datenum, dtype, giveTime=False)
 
-
-DateNumtoStr(datenum, dtype, giveTime=False):
-    Function to convert timestamps into a date string format.
-
-    datenum: date number
-    dtype: data type; mn - minute, hr - hour
-    giveTime: True/False, gives clock time.
-
-    returns a date format string.
-
-
-
-NumToStr(datenum, giveTime = False):
-    Function to convert a date number to a date string.
-    Takes in a number representing the date.
-    Returns the date in a string.
-
-    Default returns: 'day/month/year'
-    if giveTime = True, returns: 'day/month/year, hrs:mins'
-
-
+NumToStr(datenum, giveTime = False)
 '''
 
 
@@ -113,7 +89,7 @@ def DateNumtoStr(datenum, dtype, giveTime=False):
     elif (dtype == "min"):
         return NumToStr(datenum, giveTime)
 
-def getSegment(data, start, end):
+def getRange(data, start, end):
     '''
     Function to return a certain range of data.
 
@@ -128,3 +104,8 @@ def getSegment(data, start, end):
     '''
     tmp = data[data.times >= start]
     return tmp[tmp.times < end]
+
+
+
+# List of functions. 
+function_list = [DateStrtoNum, NumToStr, DateNumtoStr, getRange]
