@@ -165,3 +165,7 @@ def removeStationInfo(name):
     data = data.reset_index(drop=True)      # reindexing dataframe.
 
     return data
+
+
+
+function_list = [readCoastLine]

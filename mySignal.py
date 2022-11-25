@@ -17,7 +17,7 @@ PowerSpectrum(data, dt, rec_len):
 import numpy as np
 import pandas as pd
 from scipy.fft import fft, fftfreq, fftshift
-from .myData import readCoastLine
+from myData import readCoastLine
 from scipy import interpolate
 
 

@@ -9,7 +9,7 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 from scipy import interpolate
-from .myData import getStationInfo
+from myData import getStationInfo
 
 
 def plot_heatmap(data,
