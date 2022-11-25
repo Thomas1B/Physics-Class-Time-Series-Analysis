@@ -44,6 +44,12 @@ N = 3461760
 FILEPATH = '../../Data/{}'
 
 def readCoastLine():
+    '''
+    Function to read in the coast line data.
+    Parameters: None
+    Returns:
+        pd dataframe of longitude and latitude.
+    '''
     VI_coast = pd.read_csv(FILEPATH.format('VI_Coast.dat'), sep='\s+', names=['long', 'lat'])
     return VI_coast
 
@@ -51,9 +57,10 @@ def readCoastLine():
 def readMinuteData(filepath):
     '''
     Function to read in minute resolution data and return a pandas dataframe.
-
     Parameters:
         filepath (str): filepath to data file to read.
+    Returns:
+        pd dataframe of times, temperature and pressure
     '''
     # Creating Series for time
     times = np.linspace(START, END, N)
@@ -68,7 +75,6 @@ def readMinuteData(filepath):
 def readHourData(col_index):
     '''
     Function to read hour resolution data given a filepath.
-
     Parameters:
         col_index (int): index referring to which station used.
              0. Bowser.
@@ -89,7 +95,6 @@ def readHourData(col_index):
 
     Returns:
         : pandas frame of data, (timestamp, temp, press)
-
     '''
     col_index += 1
 
@@ -106,10 +111,9 @@ def readHourData(col_index):
 def getStationInfo(station=None):
     '''
     Function to get a station's longtitude, latitude and elevation.
-    returns dataframe of lat, long and elev.
 
     Parameters:
-        station (str) Optional: name of station.
+        station (str) Optional: name of station. default returns dataframe for all stations
     Returns:
         Pandas dataframe of long, lat, and elev.
 
