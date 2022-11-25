@@ -41,7 +41,9 @@ START = 736330.0     # start date
 END = 738733.99931   # end date
 N = 3461760
 
-FILEPATH = '../../Data/{}'
+FILEPATH = 'Data/{}'
+MINUTE_FILEPATH = 'Data/UVicWeatherdata_Minute_2022/{}_Tp.dat'
+STATION_LOCATION_FILEPATH = 'Data/AllStation_Location.txt'
 
 def readCoastLine():
     '''
@@ -54,11 +56,11 @@ def readCoastLine():
     return VI_coast
 
 
-def readMinuteData(filepath):
+def readMinuteData(name):
     '''
     Function to read in minute resolution data and return a pandas dataframe.
     Parameters:
-        filepath (str): filepath to data file to read.
+        filepath (str): name of station.
     Returns:
         pd dataframe of times, temperature and pressure
     '''
@@ -66,7 +68,7 @@ def readMinuteData(filepath):
     times = np.linspace(START, END, N)
     times = pd.Series(times, name='times')
 
-    data = pd.read_csv(filepath, sep='\s+', skiprows=2, names=['temperature', 'pressure'])
+    data = pd.read_csv(MINUTE_FILEPATH.format(name), sep='\s+', skiprows=2, names=['temperature', 'pressure'])
 
     data = pd.concat([times, data], axis=1)
     return data
@@ -120,12 +122,12 @@ def getStationInfo(station=None):
     '''
 
     if not station:
-        data = pd.read_csv('../../Data/AllStation_Location.txt', sep='\s+',
+        data = pd.read_csv(STATION_LOCATION_FILEPATH, sep='\s+',
                    names=['station', 'long', 'lati', 'elev'], skiprows=1)
         return data
 
 
-    sl = pd.read_csv('../../Data/AllStation_Location.txt', sep='\s+',
+    sl = pd.read_csv(STATION_LOCATION_FILEPATH, sep='\s+',
                      names=['station', 'long', 'lat', 'elev'], skiprows=1)
 
     ind = np.where(sl.station == station)[0][0]
@@ -136,7 +138,7 @@ def getStationInfo(station=None):
     return pd.concat([long, lat, elev], axis=1)
 
 
-def removeStationInfo(name):
+def removeStation(name):
     '''
     Function to remove a station from a DataFrame of all stations' location info.
 
@@ -161,7 +163,7 @@ def removeStationInfo(name):
             14. VIU.
     '''
 
-    data = pd.read_csv('../../Data/AllStation_Location.txt', sep='\s+',
+    data = pd.read_csv(STATION_LOCATION_FILEPATH, sep='\s+',
                        names=['station', 'long', 'lati', 'elev'], skiprows=1)
 
     idx = np.where(data == name)[0][0]      # getting index.
@@ -172,4 +174,4 @@ def removeStationInfo(name):
 
 
 
-function_list = [readCoastLine]
+function_list = [readCoastLine, readMinuteData, readHourData, getStationInfo, removeStation]
