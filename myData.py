@@ -36,10 +36,13 @@ removeStationInfo(name):
 import numpy as np
 import pandas as pd
 
-# Other Parameters
+# Minute Data Parameters
 START = 736330.0     # start date
 END = 738733.99931   # end date
-N = 3461760
+N = 3461760          # number of data points
+
+# Hour Data Parameters
+
 
 FILEPATH = 'Data/{}'
 MINUTE_FILEPATH = 'Data/UVicWeatherdata_Minute_2022/{}_Tp.dat'
