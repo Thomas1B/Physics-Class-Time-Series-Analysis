@@ -45,7 +45,8 @@ def plot_heatmap(data,
     if  style == 'contourf':
         c = plt.contourf(xi, yi, zi, 15, cmap=cmap)
     else:
-        c = plt.pcolor(xi, yi, zi, cmap=cmap, shading='auto')
+        c = plt.pcolor(xi, yi, zi, cmap=cmap)
+        plt.rcParams['pcolor.shading'] = 'auto'
 
     plt.colorbar(c) # adding a color bar.
     plt.scatter(stations.long, stations.lati, color='white', edgecolor='r', label='Station')  # plotting station locations.
