@@ -6,6 +6,9 @@ def showModules(moduleName):
 
     Parameter:
         modules (str): name of module
+
+    Returns:
+        prints list of functions
     '''
     print("List of available functions:")
     for i, func in enumerate(moduleName.function_list):
