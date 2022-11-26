@@ -43,7 +43,7 @@ def plot_heatmap(data,
     # Coloring heat map
     cmap = plt.get_cmap('jet')
     if  style == 'contourf':
-        c = plt.contourf(xi, yi, zi, 15, cmap=cmap)
+        c = plt.contourf(xi, yi, zi, 30, cmap=cmap)
     else:
         c = plt.pcolor(xi, yi, zi, cmap=cmap)
         plt.rcParams['pcolor.shading'] = 'auto'
