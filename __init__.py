@@ -1,6 +1,6 @@
 # import os
 
-from main_functions import *
+from .main_functions import *
 
 from .myDates import * # importing date handling functions
 
