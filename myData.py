@@ -43,10 +43,13 @@ N = 3461760          # number of data points
 
 # Hour Data Parameters
 
+# MAINPATH = 'Data/' # for testing
+MAINPATH = "../../Data/"
 
-FILEPATH = 'Data/{}'
-MINUTE_FILEPATH = 'Data/UVicWeatherdata_Minute_2022/{}_Tp.dat'
-STATION_LOCATION_FILEPATH = 'Data/AllStation_Location.txt'
+
+FILEPATH =  MAINPATH + '{}'
+MINUTE_FILEPATH = MAINPATH + 'UVicWeatherdata_Minute_2022/{}_Tp.dat'
+STATION_LOCATION_FILEPATH = MAINPATH + 'AllStation_Location.txt'
 
 def readCoastLine():
     '''
