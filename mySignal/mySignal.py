@@ -24,24 +24,25 @@ from scipy import interpolate
 from ..myData import readCoastLine
 
 
-def applyGridInterp(data, stationInfo, grid, method=''):
+def local_interpolation(data, stationInfo, grid, method=''):
     '''
-    Function to apply a scipy griddata and interpolation for making a heatmap.
-
+    Function to apply a griddata and locally interpolate using scipy
+    interpolate.griddata to make a heat map.
+    
     Parameters:
         data: data to be analized.
         StationInfo (DataFrame): dataframe of stations' info.
         grid (tuple): grid cells (x, y)-axis.
         method (str): method to use for the intepolation, default = cubic.
-
+        
     Returns: (tuple): (xi, yi, zi, coastline, locs)
         xi & yi: arrays representing the coordinates of a grid.
         coastline: DataFrame for the coastline.
-        locs: DataFrame for station locations.
-
+        locs: DataFrame for station locations. 
+        
     '''
     coastline = readCoastLine() # getting coastal line.
-
+    
     # Getting min and max for long and lati for gridding.
     min_long, min_lat = coastline.min()
     max_long, max_lat = coastline.max()
@@ -50,12 +51,12 @@ def applyGridInterp(data, stationInfo, grid, method=''):
     xi = np.linspace(min_long, max_long, int(grid[0]))
     yi = np.linspace(min_lat, max_lat, int(grid[1]))
     xi, yi = np.meshgrid(xi, yi)
-
+    
     if method == '':
         method = 'cubic'
-
+    
     locs = pd.concat([stationInfo.long, stationInfo.lati], axis=1)
-
+    
     # Doing the interpolation.
     zi = interpolate.griddata(locs, data, (xi, yi), method=method)
     return xi, yi, zi, coastline, locs
@@ -118,4 +119,4 @@ def PowerSpectrum(data, dt, rec_len):
 
 
 # List of functions. 
-function_list = [applyGridInterp, GetNS_NFFT, PowerSpectrum]
+function_list = [local_interpolation, GetNS_NFFT, PowerSpectrum]
