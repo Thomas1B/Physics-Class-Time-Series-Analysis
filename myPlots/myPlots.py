@@ -12,7 +12,7 @@ from scipy import interpolate
 
 
 # from myData import getStationInfo # For testing
-from myData import getStationInfo
+from ..myData import getStationInfo
 
 
 def plot_heatmap(data,
