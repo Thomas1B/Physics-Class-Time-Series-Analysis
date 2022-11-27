@@ -18,4 +18,4 @@ def showModules(moduleName):
     module.function?
 ```
 
-See file `mySignal/mySignal.py/` for `MAINPATH = ` to change the path of the data file.
+See file `mySignal/mySignal.py` for `MAINPATH = ` to change the path of the data file.
