@@ -1,4 +1,4 @@
-from .master_functions import showModules
+from .main import showModules
 
 from .myData import readCoastLine, readMinuteData, readHourData, getStationInfo, removeStation
 from .myData import function_list
