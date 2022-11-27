@@ -44,12 +44,14 @@ N = 3461760          # number of data points
 # Hour Data Parameters
 
 # MAINPATH = 'Data/' # for testing
-MAINPATH = "../../Data/"
+MAINPATH = "Data/"
 
 
 FILEPATH =  MAINPATH + '{}'
 MINUTE_FILEPATH = MAINPATH + 'UVicWeatherdata_Minute_2022/{}_Tp.dat'
 STATION_LOCATION_FILEPATH = MAINPATH + 'AllStation_Location.txt'
+TEMP_PATH_HR = 'Data/All_hourly_temperature_data_2022.dat'
+PRESS_PATH_HR = 'Data/All_hourly_pressure_data_2022.dat'
 
 def readCoastLine():
     '''
@@ -106,12 +108,9 @@ def readHourData(col_index):
     '''
     col_index += 1
 
-    temp_path = '../../Data/All_hourly_temperature_data_2022.dat'
-    press_path = '../../Data/All_hourly_pressure_data_2022.dat'
-
-    times = pd.read_csv(temp_path, sep="\s+", usecols=[0], names=["times"], skiprows=3)
-    temp = pd.read_csv(temp_path, sep="\s+", usecols=[col_index], names=["temperature"], skiprows=3)
-    press = pd.read_csv(press_path, sep="\s+", usecols=[col_index], names=["pressure"], skiprows=3)
+    times = pd.read_csv(TEMP_PATH_HR, sep="\s+", usecols=[0], names=["times"], skiprows=3)
+    temp = pd.read_csv(TEMP_PATH_HR, sep="\s+", usecols=[col_index], names=["temperature"], skiprows=3)
+    press = pd.read_csv(PRESS_PATH_HR, sep="\s+", usecols=[col_index], names=["pressure"], skiprows=3)
 
     return pd.concat([times, temp, press], axis=1)
 
