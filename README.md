@@ -17,3 +17,5 @@ def showModules(moduleName):
     #  Also 
     module.function?
 ```
+
+See file `mySignal/mySignal.py/` for `MAINPTH = ` to change the path of the data file.
