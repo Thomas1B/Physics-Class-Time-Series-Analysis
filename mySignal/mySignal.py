@@ -21,7 +21,7 @@ from scipy import interpolate
 
 
 # from myData import readCoastLine # for testing
-from .myData import readCoastLine
+from myData import readCoastLine
 
 
 def applyGridInterp(data, stationInfo, grid, method=''):
