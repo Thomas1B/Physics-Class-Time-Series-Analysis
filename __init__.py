@@ -6,7 +6,7 @@ from .myData import function_list
 from .myDates import DateStrtoNum, DateNumtoStr, getRange
 from .myDates import function_list
 
-from .mySignal import applyGridInterp, GetNS_NFFT, PowerSpectrum
+from .mySignal import local_interpolation, GetNS_NFFT, PowerSpectrum
 from .mySignal import function_list
 
 from .myStats import StudentConfidenceInterval, CI_psd, UniformRandom
