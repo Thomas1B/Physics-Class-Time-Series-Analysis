@@ -48,3 +48,7 @@ myData/__pycache__/myData.cpython-310.pyc
 myData/__pycache__/__init__.cpython-310.pyc
 main/__pycache__/functions.cpython-310.pyc
 main/__pycache__/__init__.cpython-310.pyc
+myData/__pycache__/myData.cpython-310.pyc
+.gitignore
+myData/__pycache__/myData.cpython-310.pyc
+myPlots/__pycache__/myPlots.cpython-310.pyc
