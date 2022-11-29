@@ -60,7 +60,7 @@ def readCoastLine():
     Returns:
         pd dataframe of longitude and latitude.
     '''
-    VI_coast = pd.read_csv(FILEPATH.format('VI_Coast.dat'), sep='\s+', names=['long', 'lat'])
+    VI_coast = pd.read_csv(FILEPATH.format('VI_Coast.dat'), sep='\s+', names=['long', 'lati'])
     return VI_coast
 
 
