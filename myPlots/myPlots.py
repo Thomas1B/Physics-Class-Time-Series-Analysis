@@ -36,8 +36,8 @@ def plot_heatmap(data,
     ax = plt.axes()
     ax.set_facecolor('steelblue') # coloring ocean.
 
-    plt.plot(VI_coast.long, VI_coast.lat, color="k", linewidth=0.5) # plotting land
-    plt.fill(VI_coast.long, VI_coast.lat, zorder=0, color="olivedrab") # coloring land
+    plt.plot(VI_coast.long, VI_coast.lati, color="k", linewidth=0.5) # plotting land
+    plt.fill(VI_coast.long, VI_coast.lati, zorder=0, color="olivedrab") # coloring land
 
 
     # Coloring heat map
