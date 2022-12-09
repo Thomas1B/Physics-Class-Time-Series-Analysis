@@ -63,7 +63,35 @@ def plotLocalHeatMap(data,
     plt.ylabel('Latitude [$^{\circ}$ $N$]', fontsize=fontsize, labelpad=10)
     plt.legend(fontsize=fontsize)
 
+def plotGlobalHeatMap(data, 
+                 title='', 
+                 axisLimits=False):
 
+    xi, yi, temps, coastline, locations = data
+
+    ax = plt.axes()
+    ax.set_facecolor('steelblue') # coloring ocean.
+
+    plt.plot(coastline.long, coastline.lati, color="k", linewidth=0.5) # plotting land
+    plt.fill(coastline.long, coastline.lati, zorder=0, color="olivedrab") # coloring land
+
+
+    cmap = plt.get_cmap('jet')
+    c = plt.contourf(xi, yi, temps, 15, cmap=cmap)
+    plt.colorbar(c, format='%.2f') # adding a color bar.
+
+    fontsize=12
+    plt.scatter(locations.long, locations.lati, color='white', edgecolor='r', label="Station")  # plotting station locations.
+    plt.title(title, fontsize=fontsize+4, pad=10)
+    plt.xlabel("Longtitude [$^{\circ}$ $W$]", fontsize=fontsize, labelpad=10)
+    plt.ylabel('Latitude [$^{\circ}$ $N$]', fontsize=fontsize, labelpad=10)
+    plt.legend(fontsize=fontsize)
+    
+    if axisLimits:
+        maxs = station_info.max()[1:3] + 0.05
+        mins = station_info.min()[1:3] - 0.05
+        plt.xlim(mins.long)
+        plt.ylim(mins.lati, maxs.lati)
 
 # List of functions. 
-function_list = [plotLocalHeatMap]
+function_list = [plotLocalHeatMap, plotGlobalHeatMap]

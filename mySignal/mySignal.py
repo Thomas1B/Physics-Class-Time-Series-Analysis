@@ -23,6 +23,39 @@ from scipy import interpolate
 # from myData import readCoastLine # for testing
 from ..myData import readCoastLine
 
+def globalInterp(data, locs, grid):
+    '''
+    Function to apply a global interpolation.
+
+    Parameters:
+        grid (tuple) - grid cell (x, y)-axis.
+        data - data to be analyzed
+        locs - station locations
+    '''
+    coastline = myData.readCoastLine()
+    
+    # Doing global Interpolation.
+    temps = np.zeros((grid[1], grid[0]))
+    for i in range(grid[0]):
+        for j in range(grid[1]):
+            r_sq = (coastline.long[i] - locs.long)**2 + (coastline.lati[j] - locs.lati)**2
+            w = 1/r_sq
+            w = w/sum(w)
+            temps[j, i] = np.multiply(w, data.values).sum()
+
+    # Applying gridding.
+    # Getting min and max for long and lati for gridding.
+    min_long, min_lat = coastline.min()
+    max_long, max_lat = coastline.max()
+
+    # Creating grids for gridding data.
+    xi = np.linspace(min_long, max_long, int(grid[0]))
+    yi = np.linspace(min_lat, max_lat, int(grid[1]))
+    xi, yi = np.meshgrid(xi, yi)
+    zi = temps # just for understanding
+
+    return xi, yi, zi, coastline, locs
+
 
 def localInterp(data, stationInfo, grid, method=''):
     '''
@@ -119,4 +152,4 @@ def PowerSpectrum(data, dt, rec_len):
 
 
 # List of functions. 
-function_list = [local_interpolation, GetNS_NFFT, PowerSpectrum]
+function_list = [localInterp, globalInterp ,GetNS_NFFT, PowerSpectrum]
