@@ -24,7 +24,7 @@ from scipy import interpolate
 from ..myData import readCoastLine
 
 
-def local_interpolation(data, stationInfo, grid, method=''):
+def localInterp(data, stationInfo, grid, method=''):
     '''
     Function to apply a griddata and locally interpolate using scipy
     interpolate.griddata to make a heat map.

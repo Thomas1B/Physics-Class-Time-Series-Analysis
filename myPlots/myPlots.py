@@ -15,7 +15,7 @@ from scipy import interpolate
 from ..myData import getStationInfo
 
 
-def plot_heatmap(data,
+def plotLocalHeatMap(data,
                  title='',
                  style='pcolor',
                  fontsize=12,
@@ -66,4 +66,4 @@ def plot_heatmap(data,
 
 
 # List of functions. 
-function_list = [plot_heatmap]
+function_list = [plotLocalHeatMap]
