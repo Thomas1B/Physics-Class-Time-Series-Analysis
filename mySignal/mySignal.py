@@ -32,7 +32,7 @@ def globalInterp(data, locs, grid):
         data - data to be analyzed
         locs - station locations
     '''
-    coastline = myData.readCoastLine()
+    coastline = readCoastLine()
     
     # Doing global Interpolation.
     temps = np.zeros((grid[1], grid[0]))
