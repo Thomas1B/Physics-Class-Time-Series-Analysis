@@ -1,6 +1,6 @@
 from .main import showModules
 
-from .myData import readCoastLine, readMinuteData, readHourData, getStationInfo, removeStation
+from .myData import readCoastLine, readMinuteData, readHourData, getStationInfo, removeStation, getBasicStats
 from .myData import function_list
 
 from .myDates import DateStrtoNum, DateNumtoStr, getRange

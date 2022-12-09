@@ -178,5 +178,34 @@ def removeStation(name):
     return data
 
 
+
+
+def getBasicStats(data, station_names):
+    '''
+    Function to print basic statistic info such as mean, variance, std, uncertainty.
+
+    Parameters:
+        data: dataframe with temperature and pressure
+        station_names: list of station names
+    '''
+    
+    for d, name in zip(data, station_names):
+        meanT = d.temperature.mean()
+        meanP = d.pressure.mean()
+        varP = np.nanvar(d.pressure)
+        varT = np.nanvar(d.temperature)
+        stdP = np.nanstd(d.pressure)
+        stdT = np.nanstd(d.temperature)
+
+        uncT = stdT/np.sqrt(len(d.temperature))
+        uncP = stdP/np.sqrt(len(d.pressure))
+
+
+        print(name+":")
+        print("T = {:.3f} +\- {:.3f}, P = {:.3f} +\- {:.3f}".format(meanT, uncT, meanP, uncP))
+        print("P_std = {:.3f}, P_var = {:.3f}".format(stdP, varP))
+        print("T_std = {:.3f}, T_var = {:.3f}".format(stdT, varT))
+        print()
+
 # List of functions. 
-function_list = [readCoastLine, readMinuteData, readHourData, getStationInfo, removeStation]
+function_list = [readCoastLine, readMinuteData, readHourData, getStationInfo, removeStation, getBasicStats]
