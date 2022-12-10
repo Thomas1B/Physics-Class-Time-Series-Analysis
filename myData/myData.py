@@ -189,6 +189,8 @@ def getBasicStats(data, station_names):
         station_names: list of station names
     '''
     
+    print("avg T, avg P, STD T, STD P, \nvar T, Var P\n")
+
     for d, name in zip(data, station_names):
         meanT = d.temperature.mean()
         meanP = d.pressure.mean()
@@ -201,10 +203,9 @@ def getBasicStats(data, station_names):
         uncP = stdP/np.sqrt(len(d.pressure))
 
 
-        print(name+":")
-        print("T = {:.3f} +\- {:.3f}, P = {:.3f} +\- {:.3f}".format(meanT, uncT, meanP, uncP))
-        print("P_std = {:.3f}, P_var = {:.3f}".format(stdP, varP))
-        print("T_std = {:.3f}, T_var = {:.3f}".format(stdT, varT))
+        print(name+": ")
+        print('{:.2f} {:.2f} {:.2f} {:.2f}'.format(meanT, stdT, meanP, stdP))
+        print("{:.2f} {:.2f}".format(varT, varP))
         print()
 
 # List of functions. 
