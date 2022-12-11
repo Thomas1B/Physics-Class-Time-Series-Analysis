@@ -18,7 +18,7 @@ import numpy as np
 import pandas as pd
 from scipy.fft import fft, fftfreq, fftshift
 from scipy import interpolate
-
+from scipy import stats as sp_stats
 
 # from myData import readCoastLine # for testing
 from ..myData import readCoastLine
