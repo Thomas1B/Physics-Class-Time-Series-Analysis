@@ -151,8 +151,29 @@ def PowerSpectrum(data, dt, rec_len):
 
     return PSD, freqs
 
+def CI_psd(NS, interval=0.95, boxcar=False):
+    '''
+    Function to calculate the confidence interval of a power spectral density (PSD)
+    based on the chi-squared distribution.
+    
+    Parameters:
+        NS: number of sub sections.
+        interval: default 95%, confidence interval as decimal.
+        boxcar: default False, bool var for if a boxcar method was used to calculate the PSD.
+        
+    Returns: 
+        lower and upper bounds
+    '''
+    M = 2*NS-1 # number of subsections
+    
+    nu = (4/3)*M # degrees of freedom
+    if boxcar:
+        nu = 2*M
 
-
+    l = nu/sp_stats.chi2.ppf(1 - (1-interval)/2, nu)
+    h = nu/sp_stats.chi2.ppf((1 - interval)/2, nu)
+    
+    return l, h
 
 # List of functions. 
-function_list = [localInterp, globalInterp ,GetNS_NFFT, PowerSpectrum]
+function_list = [localInterp, globalInterp ,GetNS_NFFT, PowerSpectrum, CI_psd]
