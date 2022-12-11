@@ -126,7 +126,7 @@ def GetNS_NFFT(data, showInfo=False):
 
     return NS, NFFT
 
-def PowerSpectrum(data, dt, rec_len):
+def PowerSpectrumFFT(data, dt, rec_len):
     '''
     Function to calculate the power spectrum density (PSD) of a time series
     using the Fast Fourier Transform (fft) package from scipy.
@@ -176,4 +176,4 @@ def CI_psd(NS, interval=0.95, boxcar=False):
     return l, h
 
 # List of functions. 
-function_list = [localInterp, globalInterp ,GetNS_NFFT, PowerSpectrum, CI_psd]
+function_list = [localInterp, globalInterp ,GetNS_NFFT, PowerSpectrumFFT, CI_psd]
