@@ -189,7 +189,7 @@ def getBasicStats(data, station_names):
         station_names: list of station names
     '''
     
-    print("avg T, avg P, STD T, STD P, \nvar T, Var P\n")
+    print("avg T, STD T, avg P, STD P, \nvar T, Var P\n")
 
     for d, name in zip(data, station_names):
         meanT = d.temperature.mean()
