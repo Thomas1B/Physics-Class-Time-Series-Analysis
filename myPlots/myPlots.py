@@ -17,6 +17,8 @@ from ..myData import getStationInfo
 
 def plotLocalHeatMap(stuff,
                  title='',
+                 barLabel = '',
+                 barFormat='%.1f',
                  style='pcolor',
                  fontsize=12,
                  axisLimits=False):
@@ -44,14 +46,16 @@ def plotLocalHeatMap(stuff,
 
     # Coloring heat map
     cmap = plt.get_cmap('jet')
+    c = ''
     if  style == 'contourf':
         c = plt.contourf(xi, yi, zi, 30, cmap=cmap)
     else:
         c = plt.pcolor(xi, yi, zi, cmap=cmap)
         plt.rcParams['pcolor.shading'] = 'auto'
 
-    plt.colorbar(c) # adding a color bar.
+    cbar = plt.colorbar(c, label = barLabel, format=barFormat,) # adding a color bar.
     plt.scatter(stations.long, stations.lati, color='white', edgecolor='r', label='Station')  # plotting station locations.
+    plt.clabel(c, color='k')
 
     # limits for plot
     if axisLimits:
@@ -64,6 +68,11 @@ def plotLocalHeatMap(stuff,
     plt.xlabel("Longtitude [$^{\circ}$ $W$]", fontsize=fontsize, labelpad=10)
     plt.ylabel('Latitude [$^{\circ}$ $N$]', fontsize=fontsize, labelpad=10)
     plt.legend(fontsize=fontsize)
+    
+    plt.tick_params(labelsize=fontsize-2)
+    cbar.ax.tick_params(labelsize=fontsize-2)
+
+
 
 def plotGlobalHeatMap(data, 
                  title='', 
