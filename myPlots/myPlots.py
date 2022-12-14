@@ -17,7 +17,6 @@ from ..myData import getStationInfo
 
 def plotLocalHeatMap(stuff,
                  title='',
-                 barLabel = '',
                  barFormat='%.1f',
                  style='pcolor',
                  fontsize=12,
@@ -40,7 +39,7 @@ def plotLocalHeatMap(stuff,
     ax = plt.axes()
     ax.set_facecolor('steelblue') # coloring ocean.
 
-    plt.plot(VI_coast.long, VI_coast.lati, color="k", linewidth=0.5) # plotting land
+    plt.plot(VI_coast.long, VI_coast.lati, color="k", linewidth=1) # plotting land
     plt.fill(VI_coast.long, VI_coast.lati, zorder=0, color="olivedrab") # coloring land
 
 
@@ -48,14 +47,17 @@ def plotLocalHeatMap(stuff,
     cmap = plt.get_cmap('jet')
     c = ''
     if  style == 'contourf':
-        c = plt.contourf(xi, yi, zi, 30, cmap=cmap)
+        c = plt.contourf(xi, yi, zi, 16, cmap=cmap)
+        plt.contour(xi, yi, zi, 15, colors='k', linewidths=0.5, alpha=0.5)
+
     else:
         c = plt.pcolor(xi, yi, zi, cmap=cmap)
         plt.rcParams['pcolor.shading'] = 'auto'
 
-    cbar = plt.colorbar(c, label = barLabel, format=barFormat,) # adding a color bar.
+
+    cbar = plt.colorbar(c, format=barFormat, pad=0.02) # adding a color bar.
     plt.scatter(stations.long, stations.lati, color='white', edgecolor='r', label='Station')  # plotting station locations.
-    plt.clabel(c, color='k')
+
 
     # limits for plot
     if axisLimits:
@@ -64,7 +66,8 @@ def plotLocalHeatMap(stuff,
         mins = station_info.min()[1:3] - 0.05
         plt.xlim(mins.long)
         plt.ylim(mins.lati, maxs.lati)
-    plt.title(title, fontsize=fontsize+4, pad=10)
+
+    plt.title(title, fontsize=fontsize+4, pad=15)
     plt.xlabel("Longtitude [$^{\circ}$ $W$]", fontsize=fontsize, labelpad=10)
     plt.ylabel('Latitude [$^{\circ}$ $N$]', fontsize=fontsize, labelpad=10)
     plt.legend(fontsize=fontsize)
