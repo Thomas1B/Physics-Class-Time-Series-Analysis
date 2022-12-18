@@ -42,9 +42,9 @@ def DateStrtoNum(datestr, dtype):
     elif (dtype == 'hr'):
         if (len(d) > 1):
             hr, minn = d[1].split(':')
-            return datetime.toordinal(datetime(int(year), int(month), int(day))) + 366 + (int(hr)/24) + (int(minn)/(24*60)) - T0
+            return datetime.toordinal(datetime(int(year), int(month), int(day))) + 365 + (int(hr)/24) + (int(minn)/(24*60)) - T0
         else:
-            return datetime.toordinal(datetime(int(year), int(month), int(day))) + 366 - T0
+            return datetime.toordinal(datetime(int(year), int(month), int(day))) + 365 - T0
 
 def NumToStr(datenum, giveTime = False):
     '''
