@@ -19,6 +19,7 @@ import pandas as pd
 from scipy.fft import fft, fftfreq, fftshift
 from scipy import interpolate
 from scipy import stats as sp_stats
+from scipy import signal
 
 # from myData import readCoastLine # for testing
 from ..myData import readCoastLine
@@ -55,7 +56,6 @@ def globalInterp(data, locs, grid):
     zi = temps # just for understanding
 
     return xi, yi, zi, coastline, locs
-
 
 def localInterp(data, stationInfo, grid, method=''):
     '''
@@ -175,5 +175,36 @@ def CI_psd(NS, interval=0.95, boxcar=False):
     
     return l, h
 
+def myWelch(x, fs=1.0, window='hann', nperseg=None, noverlap=None):
+    '''
+    Function to calculate the power spectral density of a time series.
+
+    Parameters:
+        x: [array_like] time series of measurement values.
+        fs (optional): [float] sampling frequency of time series. (default to 1)
+        window (optional): [str] disired window to use. (default to hann).
+        nperseg (optional): [int] length of each segment (default to none).
+        noverlap (optional): [int] number of points to overlap between segments. (default to none)
+                             (preset options: '25%', '50%', '75%')
+    '''
+    
+    # getting the number of subsections and number of points.
+    NS, NFFT = GetNS_NFFT(x) 
+
+    if nperseg == None:
+        nperseg = NFFT
+
+    match noverlap: # checking noverlap options.
+        case '25%':
+            noverlap = NFFT // 4
+        case '50%':
+            noverlap = NFFT // 2
+
+    ff, Pxx = signal.welch(x=x, fs=fs, window=window, nperseg=nperseg, noverlap=noverlap)
+
+    return ff, Pxx
+
+
+
 # List of functions. 
-function_list = [localInterp, globalInterp ,GetNS_NFFT, PowerSpectrumFFT, CI_psd]
+function_list = [localInterp, globalInterp ,GetNS_NFFT, PowerSpectrumFFT, CI_psd, myWelch]
